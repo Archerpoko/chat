@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pl" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Log in or Register</title>
+    <link rel="icon" href="img/loginFavicon.png" >
+    <meta name="description" content="Czat oparty o ajax"/>
+    <link type="text/css" rel="stylesheet" href="bootstrap/css/bootstrap.min.css"/>
+    <link type="text/css" rel="stylesheet" href="fontawesome/css/min.css"/>
+    <link type="text/css" rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="font/font.css">
+  </head>
+  <body>
+    <div id="container">
+      <div id="navBarContainer" class="boxShadow">
+        <div id="menuContainer"></div>
+        <div id="navText">Chat App v1.00</div>
+        <div id="navSocialContainer">
+          <i class="fab fa-google-play" data-link="play.google.com/store/apps/details?id=com.anioncode.spojrzyj"></i>
+          <i class="fab fa-facebook" data-link="facebook.com/smieszna.sprawa"></i>
+          <i class="fab fa-youtube" data-link="youtube.com/channel/UCjEGkWrNGeg-f8CEWpZ5gmg"></i>
+          <i class="fab fa-github" data-link="github.com/Archerpoko"></i>
+        </div>
+      </div>
+      <div id="serverErrors">
+        {% for flashMessage in app.session.flashbag.get('loginError') %}
+            <span class="alert alert-danger" role="alert">{{ flashMessage }}<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </span>
+        {% endfor %}
+        {% for flashMessage in app.session.flashbag.get('registerError') %}
+          <span class="alert alert-danger" role="alert">{{ flashMessage }}<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          </span>
+        {% endfor %}
+      </div>
+      <div id="mainBoxContainer">
+        <div id="loginBox" class="boxShadow">
+          <div id="topBox">
+            <div data-action="login" >Sign in</div>
+            <div data-action="register">Sign up</div>
+            <span class="choosenBox"></span>
+          </div>
+          <div id="contentLogin">
+            <span id="loginInstructionMessage">Login to chat</span>
+            {{form_start(loginForm)}}
+              {{form_widget(loginForm.login,{full_name:"signin[login]"})}}
+              <span class="pwDisp">{{form_widget(loginForm.password,{id:"loginPw",full_name:"signin[password]"})}}<i class="far fa-eye togglePw" data-target="loginPw"></i></span>
+              {{form_widget(loginForm.Login,{full_name:"signin[Login]"})}}
+            {{form_end(loginForm)}}
+            <div id="logErr" class="error"></div>
+          </div>
+          <div id="contentRegister" style="display:none;">
+            <span id="registerInstructionMessage">Register and start chatting!</span>
+            {{ form_start(registerForm,{'attr':{'id':"registerForm"}}) }}
+                {{ form_widget(registerForm.login,{id:"regLogin",full_name:"signup[login]"}) }}
+                {{ form_widget(registerForm.email,{full_name:"signup[email]"}) }}
+                <span class="pwDisp">{{ form_widget(registerForm.password,{id:"regPw",full_name:"signup[password]"}) }}<i class="far fa-eye togglePw" data-target="regPw"></i></span>
+                {{ form_widget(registerForm.register,{full_name:"signup[register]"}) }}
+            {{ form_end(registerForm) }}
+            <div id ="regErr" class="error"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/script.js"></script>
+  </body>
+</html>

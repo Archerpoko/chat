@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pl" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Chat</title>
+    <link rel="icon" href="/img/chatFavicon.png" >
+    <meta name="description" content="Czat oparty o ajax"/>
+    <link type="text/css" rel="stylesheet" href="/bootstrap/css/bootstrap.min.css"/>
+    <link type="text/css" rel="stylesheet" href="/fontawesome/css/min.css"/>
+    <link type="text/css" rel="stylesheet" href="/css/style.css"/>
+    <link rel="stylesheet" href="/font/font.css">
+  </head>
+  <body>
+    <div id="chatAppContainer">
+      <div id="friendsToChatContainer" class="boxShadow">
+        <div id="friendsListHeader">Your Messages</div>
+        {% for friend in friends %}
+          <div class="friendOnList {% if friend.picked is defined %}choosen{% endif %}" data-chatid="{{friend.chatid}}">
+              <div class="chatListImgHolder">
+                <img src="{{friend.avatar}}"/>
+              </div>
+              <div class="nickAndMessageContainer">
+                <div class="nickChatList">{{friend.login}}</div>
+                <div class="lastMsg">{{friend.lastMsg}}</div>
+              </div>
+          </div>
+        {% endfor %}
+      </div>
+      <div id="chat">
+        <div id="messages">
+          {% for message in messages %}
+            {% if message.from == app.session.get("id") %}
+              <div class="myMysg">{{message.message}}</div>
+            {% else %}
+              <div class="friendMsg boxShadow">{{ message.message }}</div>
+            {% endif %}
+          {% endfor %}
+        </div>
+        <div id="writeMessage">
+          <input type="text" placeholder="Type something" id="sendMessageInput"/>
+          <button role="button" id="sendMessageButton">
+            <i class="fas fa-paper-plane"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/js/script.js"></script>
+    <script src="/js/messages.js"></script>
+  </body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pl" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>User Panel</title>
+    <link rel="icon" href="img/usrPanelFavicon.png" >
+    <meta name="description" content="Czat oparty o ajax"/>
+    <link type="text/css" rel="stylesheet" href="bootstrap/css/bootstrap.min.css"/>
+    <link type="text/css" rel="stylesheet" href="fontawesome/css/min.css"/>
+    <link type="text/css" rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="font/font.css">
+  </head>
+  <body>
+    <div id="container" class="center">
+      <div id="navBarContainer" class="boxShadow">
+        <div id="menuContainer"></div>
+        <div id="navText">Zarządzanie kontem</div>
+        <div id="navSocialContainer">
+          <div class="logoff"><a href="logout">Wyloguj<i class="fas fa-sign-out-alt"></i></a></div>
+        </div>
+      </div>
+      <div class="usrSettings boxShadow">
+        <ul class="list-group">
+          <li class="list-group-item">
+            <a href="#profileSettings" role="button" data-toggle="collapse" class="accordionLink">
+            <i class="fas fa-wrench"></i>
+            <span>Ustawienia profilu</span>
+            </a>
+          </li>
+          <div id="profileSettings" class="collapse show">
+            {{form_start(updateProfileForm)}}
+              <div id="profileSettingsFlex">
+                <div id="textSettings">
+                  {{form_row(updateProfileForm.login,{value:app.session.get("login")})}}
+                  {{form_row(updateProfileForm.name,{value:app.session.get("name")})}}
+                  {{form_row(updateProfileForm.surname,{value:app.session.get("surname")})}}
+                </div>
+                <div id="avatarSettings">
+                  <div id="avatarHolder">
+                    <img src="{{app.session.get('avatar')}}"/>
+                  </div>
+                    <div id="fileButtonHolder">
+                      {{form_label(updateProfileForm.avatar,'Choose File', {id:'avatarSend','label_attr': {'id': 'labelAvatarSend','class':'inputAction'}})}}
+                    </div>
+                    {{form_widget(updateProfileForm.avatar,{id:"avatarSend"})}}
+                </div>
+                {{form_row(updateProfileForm.update)}}
+              </div>
+            {{form_end(updateProfileForm,{'render_rest': false})}}
+          </div>
+          <li class="list-group-item">
+            <a href="#friendsList" role="button" data-toggle="collapse" class="accordionLink">
+            <i class="fas fa-users"></i>
+            <span>Lista znajomych</span>
+            </a>
+          </li>
+          <div id="friendsList" class="collapse">
+              {% if friends %}
+              <ul class="unorderedListClean">
+                  {% for friend in friends %}
+                    <li class="friendsListItem">
+                      <div class="avatarListHolder">
+                        <img src="{{friend.avatar}}"/>
+                      </div>
+                      <div class="nickFriendList">{{friend.nick}}</div>
+                      <div class="friendActions">
+                        {% if friend.status == 1 %}
+                          <a href="accept/{{friend.nick}}"><i class="fas fa-user-plus greenColor"></i></a>
+                        {% else %}
+                          <a href="chat/{{friend.chatid}}"><i class="fas fa-comments blueColor"></i></a>
+                        {% endif %}
+                          <a href="remove/{{friend.nick}}"><i class="fas fa-user-times redColor"></i></a>
+                      </div>
+                    </li>
+                  {% endfor %}
+              </ul>
+              {% else %}
+                <div style="text-align:center">Nie masz znajomków mordo</div>
+              {% endif %}
+          </div>
+        </ul>
+      </div>
+    </div>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/script.js"></script>
+  </body>
+</html>
