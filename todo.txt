@@ -1,0 +1,8 @@
++ Wysyłanie maili z potwierdzeniem 
++ Refaktoryzacja kodu tak aby przenieść kod z kontrolerów do osobnych klas (serwisów)
++ Dodać możliwośc nawigacji z czatu do innych miejsc w aplikacji
++ Dodać możliwośc usuwania zdjęć w panelu użytkownika
++ Dodać wiadomości flash po logowaniu/zaproszeniu/rejestracji/aktualizacji w panelu
++ Dodać wyświetlnie nazwy wysyłanego pliku pod przyciskiem w panelu "$('#avatarSend').files[0].name"
++ Dodać stronę do wyszukiwania osób
++ Dodać stronę publicznego profilu
