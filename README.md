@@ -16,3 +16,10 @@ Aplikacja jest stabilna i spełnia swoją główną rolę choć nadal zamierzam 
 * Aby dokończyć poprawne konfigurowanie środowiska należy dokonać ostatnich kroków które znajdziemy [tutaj](https://symfony.com/doc/current/setup.html#setting-up-an-existing-symfony-project)
 * Ostatnią kwestią jest podanie danych do serwera mysql w pliku .env oraz wykonanie migracji przy użyciu doctrine co pozwoli na komunikacje z bazą
 
+## Zrzuty ekranu
+
+![logowanie](https://raw.githubusercontent.com/Archerpoko/chat/master/public/img/welcome.png)
+
+![panel](https://raw.githubusercontent.com/Archerpoko/chat/master/public/img/userPanel.png)
+
+![chat](https://raw.githubusercontent.com/Archerpoko/chat/master/public/img/chat.png)
