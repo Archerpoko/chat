@@ -19,4 +19,7 @@ class DataValidator {
     if(preg_match("/^[a-z]+[a-z0-9]+$/i",$login) && strlen($login)>3)return true;
     return false;
   }
+  public function clearDangerousSymbols($value){
+    return trim(htmlspecialchars($value));
+  }
 }
